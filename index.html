@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventura OSI: El Viaje de la Carta Mágica</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Aventura OSI</h1>
+    <p>¡Ayuda al cartero a empaquetar y entregar el mensaje!</p>
+  </header>
+
+  <main id="game-container">
+    <!-- Tablero donde se ordenan o identifican las capas -->
+    <section id="story-box">
+      <div id="layer-graphic">📦</div>
+      <h2 id="layer-title">Capa 7: Aplicación</h2>
+      <p id="layer-description">Escribes tu mensaje o haces un dibujo en una hoja.</p>
+    </section>
+
+    <!-- Opciones interactivas o botones de respuesta -->
+    <section id="interaction-area">
+      <div id="choices-container"></div>
+    </section>
+
+    <!-- Marcador simple -->
+    <footer id="scoreboard">
+      <span>Nivel: <strong id="current-level">1</strong> / 7</span>
+      <span>Puntos: <strong id="score">0</strong></span>
+    </footer>
+  </main>
+
+  <script src="js/osi-data.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
