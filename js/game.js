@@ -12,10 +12,18 @@ function loadQuestion(index) {
   const layer = osiLayers[index];
   
   layerGraphic.textContent = layer.icon;
-  layerTitle.textContent = `${layer.name}: ${layer.simpleTitle}`;
-  layerDescription.textContent = `${layer.story} — ${layer.challenge}`;
-  currentLevelText.textContent = index + 1;
+  // Solo muestra el número de la capa
+  layerTitle.textContent = `Capa ${layer.number}`;
   
+  // Explicación didáctica + reto interactivo
+  layerDescription.innerHTML = `
+    <div style="background: #eef5fc; padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; font-size: 0.95rem; line-height: 1.4; color: #1e3a8a;">
+      <strong>¿Qué hace esta capa?</strong><br>${layer.summary}
+    </div>
+    <p style="margin: 8px 0; font-weight: 500;">${layer.challenge}</p>
+  `;
+  
+  currentLevelText.textContent = index + 1;
   choicesContainer.innerHTML = "";
   
   layer.options.forEach((optionText, i) => {
@@ -33,7 +41,7 @@ function checkAnswer(selected, correct) {
     scoreText.textContent = currentScore;
     alert("¡Correcto! El paquete avanza a la siguiente capa.");
   } else {
-    alert("¡Ups! Esa no era la capa correcta. Inténtalo de nuevo.");
+    alert("¡Ups! Esa no era la capa correcta. Recuerda leer la pista arriba e inténtalo de nuevo.");
   }
 
   currentIndex++;
@@ -47,15 +55,14 @@ function checkAnswer(selected, correct) {
 function finishGame() {
   document.getElementById("story-box").innerHTML = `
     <h2>🎉 ¡Misión Cumplida!</h2>
-    <p>El mensaje ha viajado con éxito por las 7 capas del Modelo OSI.</p>
-    <p>Puntaje final: <strong>${currentScore}</strong> puntos.</p>
+    <p>Has guiado con éxito la carta a través de las 7 capas del Modelo OSI.</p>
+    <p>Puntaje final: <strong>${currentScore}</strong> / 70 puntos.</p>
   `;
   choicesContainer.innerHTML = `
-    <button class="choice-btn" onclick="location.reload()">Volver a Jugar</button>
+    <button class="choice-btn" onclick="location.reload()">Jugar de Nuevo</button>
   `;
 }
 
-// Iniciar al cargar
 document.addEventListener("DOMContentLoaded", () => {
   loadQuestion(currentIndex);
 });
